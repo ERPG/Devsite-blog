@@ -1,10 +1,7 @@
-# gatsby-starter-business
+# Gatsby-blog
 A [Gatsby v2](https://www.gatsbyjs.org/) and [Netlify CMS](https://www.netlifycms.org) powered generic business website.
 
 It follows the [JAMstack architecture](https://jamstack.org) by using Git as a single source of truth, and [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
-
-## Demo
-[Gatsby Starter Business](https://gatsby-starter-business.netlify.com)
 
 ## Features
 * Complete Business Website Suite - Home Page, About Page, Pricing Page, Contact Page and Blog
@@ -61,9 +58,9 @@ Remove the .cache and public for a scratch compile.
 yarn clean
 ```
 
-## Deployment
+<!-- ## Deployment
 Clicking the button will ask for authentication via Github, which will create a repo in your github account with this starter. Then, it will build and deploy the site to Netlify.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/v4iv/gatsby-starter-business&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
-You can read up on how to set up Identity(Authentication for CMS User) here [How To Set Up Netlify CMS](https://www.netlifycms.org/docs/add-to-your-site/)
+You can read up on how to set up Identity(Authentication for CMS User) here [How To Set Up Netlify CMS](https://www.netlifycms.org/docs/add-to-your-site/) -->
