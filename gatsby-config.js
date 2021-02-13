@@ -17,6 +17,31 @@ module.exports = {
     },
   },
   plugins: [
+    // {
+    //   resolve: 'gatsby-plugin-prettier-eslint',
+    //   options: {
+    //     onChangeFullScanFormat: true, // if true, on file save always perform full scan format
+    //     prettierLast: true, // if true, will run Prettier after ESLint
+    //     prettier: {
+    //       patterns: [
+    //         // the pattern '**/*.{js,jsx,ts,tsx}' is not used because we will rely on `eslint --fix`
+    //         '**/*.{css,scss,less}',
+    //         '**/*.{json,json5}',
+    //         '**/*.{graphql}',
+    //         '**/*.{md,mdx}',
+    //         '**/*.{html}',
+    //         '**/*.{yaml,yml}',
+    //       ],
+    //     },
+    //     eslint: {
+    //       patterns: '**/*.{js,jsx,ts,tsx}',
+    //       customOptions: {
+    //         fix: true,
+    //         cache: true,
+    //       },
+    //     },
+    //   },
+    // },
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -75,7 +100,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        indentedSyntax: true
+        indentedSyntax: true,
       },
     },
     {
@@ -119,7 +144,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/blog/*`, `/about`, `/pricing`, `/contact`, `/`],
+        precachePages: [`/blog/*`, `/reviews/*`, `/about`, `/pricing`, `/contact`, `/`],
       },
     },
     {
@@ -162,6 +187,7 @@ module.exports = {
                   title: edge.node.frontmatter.title,
                   image: edge.node.frontmatter.cover,
                   description: edge.node.excerpt,
+                  main_image: edge.node.main_image,
                   author: rssMetadata.author,
                   url: rssMetadata.site_url + edge.node.fields.slug,
                   guid: rssMetadata.site_url + edge.node.fields.slug,

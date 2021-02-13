@@ -4,6 +4,10 @@
     "standard",
     "standard-trailing-commas",
     "standard-react"
+    // "prettier"
+  ],
+  "plugins": [
+    // "prettier"
   ],
   "globals": {
     "graphql": true,
@@ -19,5 +23,12 @@
     "react/jsx-handler-names": "off",
     "react/jsx-closing-bracket-location": "off",
     "react/jsx-closing-tag-location": "off"
+    // "prettier/prettier": ["error",   {
+    // "endOfLine": "lf",
+    // "semi": true,
+    // "singleQuote": true,
+    // "tabWidth": 2,
+    // "trailingComma": "es5"
+    // }]
   }
 }

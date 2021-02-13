@@ -1,11 +1,13 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Offerings from '../Offerings'
-import Testimonials from '../Testimonials'
+// import Testimonials from '../Testimonials'
 import PropTypes from 'prop-types'
+import ProgressiveImageContainer from '../ProgressiveImageContainer'
+import './styles.sass'
 
 const HomePageTemplate = (props) => {
-  const { title, heading, description, offerings, meta_title, meta_description, testimonials } = props
+  const { title, meta_title, meta_description, heading, description, offerings, main_image } = props
 
   return (
     <div>
@@ -16,12 +18,17 @@ const HomePageTemplate = (props) => {
       <section className='hero is-primary is-bold is-medium'>
         <div className='hero-body'>
           <div className='container'>
+            <ProgressiveImageContainer
+              className='developer-center-image'
+              image={main_image.publicURL}
+              alt={'main-' + title}
+            />
             <div className='columns'>
               <div className='column is-10 is-offset-1'>
                 <div className='section'>
-                  <h1 className='title'>
+                  {/* <h1 className='title'>
                     {title}
-                  </h1>
+                  </h1> */}
                 </div>
               </div>
             </div>
@@ -42,8 +49,8 @@ const HomePageTemplate = (props) => {
                     <p>{description}</p>
                   </div>
                   <Offerings gridItems={offerings.blurbs} />
-                  <h2 className='has-text-weight-semibold is-size-2'>Testimonials</h2>
-                  <Testimonials testimonials={testimonials} />
+                  {/* <h2 className='has-text-weight-semibold is-size-2'>Testimonials</h2> */}
+                  {/* <Testimonials testimonials={testimonials} /> */}
                 </div>
               </div>
             </div>
@@ -57,13 +64,13 @@ HomePageTemplate.propTypes = {
   title: PropTypes.string,
   meta_title: PropTypes.string,
   meta_description: PropTypes.string,
+  main_image: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
   offerings: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
   testimonials: PropTypes.array,
-
 }
 
 export default HomePageTemplate

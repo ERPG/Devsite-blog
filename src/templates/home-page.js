@@ -5,7 +5,7 @@ import HomePageTemplate from '../components/HomePageTemplate'
 import Layout from '../components/Layout'
 
 const HomePage = (props) => {
-  const { data: { markdownRemark: { frontmatter: { title, meta_title, meta_description, heading, description, offerings, testimonials } } } } = props
+  const { data: { markdownRemark: { frontmatter: { title, meta_title, meta_description, main_image, heading, description, offerings, testimonials } } } } = props
 
   return (
     <Layout>
@@ -13,6 +13,7 @@ const HomePage = (props) => {
         title={title}
         meta_title={meta_title}
         meta_description={meta_description}
+        main_image={main_image}
         heading={heading}
         description={description}
         offerings={offerings}
@@ -35,11 +36,12 @@ export default HomePage
 export const pageQuery = graphql`
   query IndexPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
+      html
       frontmatter {
         title
         meta_title
         meta_description
-        heading
+                heading
         description
         offerings {
           blurbs {
@@ -57,6 +59,14 @@ export const pageQuery = graphql`
         testimonials {
           author
           quote
+        }
+        main_image {
+          childImageSharp {
+            fluid(maxWidth: 900) {
+                ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
         }
       }
     }

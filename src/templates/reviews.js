@@ -2,13 +2,15 @@ import React from 'react'
 import { Link } from 'gatsby'
 import config from '../../config'
 import Helmet from 'react-helmet'
-import PostCard from '../components/PostCard'
+import ReviewCard from '../components/ReviewCard'
 import Layout from '../components/Layout'
 
 const PaginationLink = props => {
+  console.log('props pagination link ----')
+  console.log(props)
   if (!props.test) {
     return (
-      <Link to={`/blog/${props.url}`} className='button is-rounded'>
+      <Link to={`/review/${props.url}`} className='button is-rounded'>
         {props.text}
       </Link>
     )
@@ -21,7 +23,7 @@ const PaginationLink = props => {
   }
 }
 
-const BlogPage = (props) => {
+const ReviewPage = (props) => {
   const { pageContext: { first, group, index, last } } = props
   const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
   const nextUrl = (index + 1).toString() + '/'
@@ -37,7 +39,7 @@ const BlogPage = (props) => {
   return (
     <Layout>
       <Helmet>
-        <title>Blog | The Devsite</title>
+        <title>Reviews | The Devsite</title>
         {/* Schema.org tags */}
         <script type='application/ld+json'>
           {JSON.stringify(websiteSchemaOrgJSONLD)}
@@ -50,7 +52,7 @@ const BlogPage = (props) => {
               <div className='column is-10 is-offset-1'>
                 <div className='section'>
                   <h1 className='title'>
-                    Blog
+                    Reviews
                   </h1>
                 </div>
               </div>
@@ -59,7 +61,7 @@ const BlogPage = (props) => {
         </div>
       </section>
       <section className='section'>
-        <PostCard posts={group} />
+        <ReviewCard reviews={group} />
         <section className='section'>
           <div className='buttons is-centered'>
             <PaginationLink test={first} url={previousUrl} text='Previous Page' />
@@ -71,4 +73,4 @@ const BlogPage = (props) => {
   )
 }
 
-export default BlogPage
+export default ReviewPage

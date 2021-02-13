@@ -12,7 +12,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
     if (Object.prototype.hasOwnProperty.call(node, 'frontmatter')) {
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'slug') && Object.prototype.hasOwnProperty.call(node.frontmatter, 'cover')) {
-        slug = `/blog/${_.kebabCase(node.frontmatter.slug)}`
+        const { templateKey } = node.frontmatter
+        if (templateKey === 'article-page') {
+          slug = `/blog/${_.kebabCase(node.frontmatter.slug)}`
+        } else if (templateKey === 'review-page') {
+          slug = `/reviews/${_.kebabCase(node.frontmatter.slug)}`
+        }
       } else if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'slug')) {
         slug = `/${_.kebabCase(node.frontmatter.slug)}`
       } else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
@@ -74,7 +79,6 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     const postsAndPages = result.data.allMarkdownRemark.edges
-
     // Post pages:
     let posts = []
     // Iterate through each post/page, putting all found posts (where templateKey = article-page) into `posts`
@@ -90,6 +94,23 @@ exports.createPages = ({ actions, graphql }) => {
       pageTemplate: 'src/templates/blog.js',
       pageLength: 6, // This is optional and defaults to 10 if not used
       pathPrefix: 'blog', // This is optional and defaults to an empty string if not used
+      context: {}, // This is optional and defaults to an empty object if not used
+    })
+
+    let reviews = []
+    // Iterate through each post/page, putting all found posts (where templateKey = review-page) into `posts`
+    postsAndPages.forEach(edge => {
+      if (_.isMatch(edge.node.frontmatter, { templateKey: 'review-page' })) {
+        reviews = reviews.concat(edge)
+      }
+    })
+
+    createPaginatedPages({
+      edges: reviews,
+      createPage: createPage,
+      pageTemplate: 'src/templates/reviews.js',
+      pageLength: 6, // This is optional and defaults to 10 if not used
+      pathPrefix: 'reviews', // This is optional and defaults to an empty string if not used
       context: {}, // This is optional and defaults to an empty object if not used
     })
     postsAndPages.forEach(edge => {
